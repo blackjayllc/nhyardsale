@@ -1,16 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Calendar, Search, Tag, ChevronDown, Menu, X, ArrowRight, Sparkles, Clock, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  MapPin,
+  Calendar,
+  Search,
+  Tag,
+  Menu,
+  X,
+  ArrowRight,
+  Sparkles,
+  Clock,
+  Users,
+  ChevronDown,
+} from "lucide-react";
 
 const towns = [
   "All Towns",
@@ -38,19 +41,22 @@ const featuredSales = [
     id: 1,
     title: "Vintage Collectibles",
     description: "Antiques, retro decor, and rare finds",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
   },
   {
     id: 2,
     title: "Kids' Toys & Games",
     description: "Gently used toys, games, and books",
-    image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop",
   },
   {
     id: 3,
     title: "Tools & Equipment",
     description: "Power tools, garden equipment, and more",
-    image: "https://images.unsplash.com/photo-1581147036324-c1c88c9b1e3b?w=400&h=300&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1581147036324-c1c88c9b1e3b?w=400&h=300&fit=crop",
   },
 ];
 
@@ -82,6 +88,8 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedTown, setSelectedTown] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
+  const [townDropdownOpen, setTownDropdownOpen] = useState(false);
+  const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background font-sans">
@@ -99,27 +107,39 @@ export default function Home() {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-8 md:flex">
-            <a href="#" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <a
+              href="#"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
               Home
             </a>
-            <a href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
               Find Sales
             </a>
-            <a href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
               Towns
             </a>
-            <a href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
               Tips
             </a>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" className="text-foreground">
+            <button className="px-4 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg transition-colors">
               Log in
-            </Button>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+            </button>
+            <button className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg transition-colors">
               List Your Sale
-            </Button>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -140,13 +160,25 @@ export default function Home() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-border bg-card px-4 py-4">
             <div className="flex flex-col gap-4">
-              <a href="#" className="text-sm font-medium text-foreground">Home</a>
-              <a href="#" className="text-sm font-medium text-muted-foreground">Find Sales</a>
-              <a href="#" className="text-sm font-medium text-muted-foreground">Towns</a>
-              <a href="#" className="text-sm font-medium text-muted-foreground">Tips</a>
+              <a href="#" className="text-sm font-medium text-foreground">
+                Home
+              </a>
+              <a href="#" className="text-sm font-medium text-muted-foreground">
+                Find Sales
+              </a>
+              <a href="#" className="text-sm font-medium text-muted-foreground">
+                Towns
+              </a>
+              <a href="#" className="text-sm font-medium text-muted-foreground">
+                Tips
+              </a>
               <hr className="border-border" />
-              <Button variant="ghost" className="justify-start text-foreground">Log in</Button>
-              <Button className="bg-primary text-primary-foreground">List Your Sale</Button>
+              <button className="text-left text-sm font-medium text-foreground">
+                Log in
+              </button>
+              <button className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-lg">
+                List Your Sale
+              </button>
             </div>
           </div>
         )}
@@ -167,60 +199,104 @@ export default function Home() {
                   Discover Yard Sales Across New Hampshire
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-                  Your one-stop destination for finding local yard sales, garage sales, and estate sales. Uncover hidden gems in your neighborhood.
+                  Your one-stop destination for finding local yard sales, garage
+                  sales, and estate sales. Uncover hidden gems in your
+                  neighborhood.
                 </p>
 
                 {/* Search Box */}
-                <Card className="mt-4 border-border shadow-lg">
-                  <CardContent className="p-4">
-                    <div className="flex flex-col gap-4 md:flex-row md:items-end">
-                      <div className="flex-1">
-                        <label className="mb-2 block text-sm font-medium text-foreground">
-                          Town
-                        </label>
-                        <Select value={selectedTown} onValueChange={setSelectedTown}>
-                          <SelectTrigger className="w-full bg-background border-border">
-                            <div className="flex items-center gap-2">
-                              <MapPin className="h-4 w-4 text-muted-foreground" />
-                              <SelectValue placeholder="Select town" />
-                            </div>
-                          </SelectTrigger>
-                          <SelectContent>
-                            {towns.map((town) => (
-                              <SelectItem key={town} value={town.toLowerCase()}>
-                                {town}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="flex-1">
-                        <label className="mb-2 block text-sm font-medium text-foreground">
-                          When
-                        </label>
-                        <Select value={selectedDate} onValueChange={setSelectedDate}>
-                          <SelectTrigger className="w-full bg-background border-border">
-                            <div className="flex items-center gap-2">
-                              <Calendar className="h-4 w-4 text-muted-foreground" />
-                              <SelectValue placeholder="Pick a date" />
-                            </div>
-                          </SelectTrigger>
-                          <SelectContent>
-                            {dates.map((date) => (
-                              <SelectItem key={date} value={date.toLowerCase()}>
-                                {date}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <Button className="bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6">
-                        <Search className="mr-2 h-4 w-4" />
-                        Search Sales
-                      </Button>
+                <div className="mt-4 border border-border rounded-xl shadow-lg bg-card p-4">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-end">
+                    <div className="flex-1 relative">
+                      <label className="mb-2 block text-sm font-medium text-foreground">
+                        Town
+                      </label>
+                      <button
+                        onClick={() => {
+                          setTownDropdownOpen(!townDropdownOpen);
+                          setDateDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center justify-between gap-2 px-3 py-2.5 bg-background border border-border rounded-lg text-sm hover:border-primary/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 text-muted-foreground" />
+                          <span
+                            className={
+                              selectedTown
+                                ? "text-foreground"
+                                : "text-muted-foreground"
+                            }
+                          >
+                            {selectedTown || "Select town"}
+                          </span>
+                        </div>
+                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                      </button>
+                      {townDropdownOpen && (
+                        <div className="absolute z-10 mt-1 w-full bg-card border border-border rounded-lg shadow-lg py-1 max-h-60 overflow-auto">
+                          {towns.map((town) => (
+                            <button
+                              key={town}
+                              onClick={() => {
+                                setSelectedTown(town);
+                                setTownDropdownOpen(false);
+                              }}
+                              className="w-full px-3 py-2 text-left text-sm hover:bg-muted transition-colors"
+                            >
+                              {town}
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  </CardContent>
-                </Card>
+                    <div className="flex-1 relative">
+                      <label className="mb-2 block text-sm font-medium text-foreground">
+                        When
+                      </label>
+                      <button
+                        onClick={() => {
+                          setDateDropdownOpen(!dateDropdownOpen);
+                          setTownDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center justify-between gap-2 px-3 py-2.5 bg-background border border-border rounded-lg text-sm hover:border-primary/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4 text-muted-foreground" />
+                          <span
+                            className={
+                              selectedDate
+                                ? "text-foreground"
+                                : "text-muted-foreground"
+                            }
+                          >
+                            {selectedDate || "Pick a date"}
+                          </span>
+                        </div>
+                        <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                      </button>
+                      {dateDropdownOpen && (
+                        <div className="absolute z-10 mt-1 w-full bg-card border border-border rounded-lg shadow-lg py-1">
+                          {dates.map((date) => (
+                            <button
+                              key={date}
+                              onClick={() => {
+                                setSelectedDate(date);
+                                setDateDropdownOpen(false);
+                              }}
+                              className="w-full px-3 py-2 text-left text-sm hover:bg-muted transition-colors"
+                            >
+                              {date}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <button className="flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6 rounded-lg font-medium text-sm transition-colors">
+                      <Search className="h-4 w-4" />
+                      Search Sales
+                    </button>
+                  </div>
+                </div>
 
                 {/* Stats */}
                 <div className="flex gap-8 mt-4">
@@ -234,7 +310,9 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-foreground">10k+</p>
-                    <p className="text-sm text-muted-foreground">Happy Shoppers</p>
+                    <p className="text-sm text-muted-foreground">
+                      Happy Shoppers
+                    </p>
                   </div>
                 </div>
               </div>
@@ -246,11 +324,15 @@ export default function Home() {
                     <div className="absolute inset-0 bg-secondary/20" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="bg-card/95 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-border">
-                        <p className="text-lg font-semibold text-foreground mb-2">Weekend Sales</p>
+                        <p className="text-lg font-semibold text-foreground mb-2">
+                          Weekend Sales
+                        </p>
                         <div className="flex items-center gap-2 text-primary">
                           <MapPin className="h-5 w-5" />
                           <span className="text-2xl font-bold">47</span>
-                          <span className="text-muted-foreground">sales near you</span>
+                          <span className="text-muted-foreground">
+                            sales near you
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -275,38 +357,39 @@ export default function Home() {
                   Upcoming Town-Wide Sales
                 </h2>
                 <p className="mt-2 text-muted-foreground">
-                  Don't miss these popular community events
+                  {"Don't miss these popular community events"}
                 </p>
               </div>
-              <Button variant="outline" className="w-fit border-border text-foreground hover:bg-muted">
+              <button className="flex items-center gap-2 w-fit px-4 py-2 border border-border text-foreground hover:bg-muted rounded-lg text-sm font-medium transition-colors">
                 View All Events
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {upcomingSales.map((sale) => (
-                <Card key={sale.id} className="group border-border hover:border-primary/50 hover:shadow-lg transition-all cursor-pointer">
-                  <CardContent className="p-6">
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-secondary/10 px-3 py-1 text-sm font-medium text-secondary">
-                      <Clock className="h-3 w-3" />
-                      {sale.date}
-                    </div>
-                    <h3 className="mb-2 text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {sale.title}
-                    </h3>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
-                        {sale.location}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Users className="h-4 w-4" />
-                        {sale.spots}
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div
+                  key={sale.id}
+                  className="group border border-border hover:border-primary/50 hover:shadow-lg transition-all cursor-pointer rounded-xl bg-card p-6"
+                >
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-secondary/10 px-3 py-1 text-sm font-medium text-secondary">
+                    <Clock className="h-3 w-3" />
+                    {sale.date}
+                  </div>
+                  <h3 className="mb-2 text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {sale.title}
+                  </h3>
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <MapPin className="h-4 w-4" />
+                      {sale.location}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Users className="h-4 w-4" />
+                      {sale.spots}
+                    </span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -317,40 +400,42 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid gap-6 md:grid-cols-2">
               {/* List Your Sale CTA */}
-              <Card className="relative overflow-hidden bg-primary border-none">
-                <CardContent className="relative z-10 p-8 lg:p-10">
+              <div className="relative overflow-hidden bg-primary rounded-xl">
+                <div className="relative z-10 p-8 lg:p-10">
                   <h3 className="mb-3 text-2xl font-bold text-primary-foreground">
                     List Your Yard Sale
                   </h3>
                   <p className="mb-6 text-primary-foreground/90 leading-relaxed">
-                    Reach thousands of local treasure hunters. Get your sale on the map and attract more visitors.
+                    Reach thousands of local treasure hunters. Get your sale on
+                    the map and attract more visitors.
                   </p>
-                  <Button className="bg-card text-primary hover:bg-card/90">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-card text-primary hover:bg-card/90 rounded-lg text-sm font-medium transition-colors">
                     Get Listed for $3
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
                 <div className="absolute -right-8 -bottom-8 h-40 w-40 rounded-full bg-primary-foreground/10" />
                 <div className="absolute -right-4 -bottom-4 h-24 w-24 rounded-full bg-primary-foreground/10" />
-              </Card>
+              </div>
 
               {/* Tips CTA */}
-              <Card className="relative overflow-hidden bg-secondary border-none">
-                <CardContent className="relative z-10 p-8 lg:p-10">
+              <div className="relative overflow-hidden bg-secondary rounded-xl">
+                <div className="relative z-10 p-8 lg:p-10">
                   <h3 className="mb-3 text-2xl font-bold text-secondary-foreground">
                     Treasure Hunting Tips
                   </h3>
                   <p className="mb-6 text-secondary-foreground/90 leading-relaxed">
-                    Learn the best strategies for finding amazing deals and hidden gems at local yard sales.
+                    Learn the best strategies for finding amazing deals and
+                    hidden gems at local yard sales.
                   </p>
-                  <Button className="bg-card text-secondary hover:bg-card/90">
+                  <button className="flex items-center gap-2 px-4 py-2 bg-card text-secondary hover:bg-card/90 rounded-lg text-sm font-medium transition-colors">
                     Read Our Guide
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
                 <div className="absolute -right-8 -bottom-8 h-40 w-40 rounded-full bg-secondary-foreground/10" />
                 <div className="absolute -right-4 -bottom-4 h-24 w-24 rounded-full bg-secondary-foreground/10" />
-              </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -363,13 +448,16 @@ export default function Home() {
                 Featured Sales of the Week
               </h2>
               <p className="mt-2 text-muted-foreground">
-                Browse popular categories and find what you're looking for
+                {"Browse popular categories and find what you're looking for"}
               </p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {featuredSales.map((sale) => (
-                <Card key={sale.id} className="group overflow-hidden border-border hover:shadow-lg transition-all cursor-pointer">
+                <div
+                  key={sale.id}
+                  className="group overflow-hidden border border-border hover:shadow-lg transition-all cursor-pointer rounded-xl bg-card"
+                >
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={sale.image}
@@ -377,15 +465,15 @@ export default function Home() {
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <CardContent className="p-5">
+                  <div className="p-5">
                     <h3 className="mb-1 text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                       {sale.title}
                     </h3>
                     <p className="text-sm text-muted-foreground">
                       {sale.description}
                     </p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -398,15 +486,16 @@ export default function Home() {
               Ready to Find Your Next Treasure?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-background/80 leading-relaxed">
-              Join thousands of New Hampshire residents discovering amazing deals at local yard sales every weekend.
+              Join thousands of New Hampshire residents discovering amazing
+              deals at local yard sales every weekend.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <button className="px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg font-medium transition-colors">
                 Browse Sales Near You
-              </Button>
-              <Button size="lg" variant="outline" className="border-background/30 text-background hover:bg-background/10">
+              </button>
+              <button className="px-6 py-3 border border-background/30 text-background hover:bg-background/10 rounded-lg font-medium transition-colors">
                 List Your Sale
-              </Button>
+              </button>
             </div>
           </div>
         </section>
@@ -426,39 +515,128 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Connecting New Hampshire communities through local yard sales since 2020.
+                Connecting New Hampshire communities through local yard sales
+                since 2020.
               </p>
             </div>
             <div>
               <h4 className="mb-4 font-semibold text-foreground">Quick Links</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Find Sales</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">List Your Sale</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Town-Wide Events</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Yard Sale Tips</a></li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Find Sales
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    List Your Sale
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Town-Wide Events
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Yard Sale Tips
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="mb-4 font-semibold text-foreground">Towns</h4>
+              <h4 className="mb-4 font-semibold text-foreground">
+                Popular Towns
+              </h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">Hopkinton</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Concord</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Manchester</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Portsmouth</a></li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Hopkinton
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Concord
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Manchester
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Portsmouth
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
-              <h4 className="mb-4 font-semibold text-foreground">Contact</h4>
+              <h4 className="mb-4 font-semibold text-foreground">Support</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    FAQ
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Terms of Service
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
-          <div className="mt-8 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2026 NHYardSale.com. All rights reserved.</p>
+          <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+            <p>
+              {"© 2026 NHYardSale.com. All rights reserved. Made with love in New Hampshire."}
+            </p>
           </div>
         </div>
       </footer>
